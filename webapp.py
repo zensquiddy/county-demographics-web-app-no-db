@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Markup
 from flask import render_template, flash, Markup
 
 import os
@@ -8,14 +8,30 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    states = get_state_options()
+    print(states)
+    return render_template('home.html', options=states)
 
 @app.route('/showFact')
 def search_by_county():
+    states = get_state_options()
     state = request.args.get('state')
     county = county_most_under_18(state)
     fact = "In " + state + ", the county with the highest percentage of under 18 year olds is " + county + "."
-    return render_template('home.html', funFact=fact)
+    return render_template('home.html', options=states, funFact=fact)
+    
+def get_state_options():
+    """Return the html code for the drop down menu.  Each option is a state abbreviation from the demographic data."""
+    with open('demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
+    states=[]
+    for c in counties:
+        if c["State"] not in states:
+            states.append(c["State"])
+    options=""
+    for s in states:
+        options += Markup("<option value=\"" + s + "\">" + s + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
+    return options
 
 def county_most_under_18(state):
     """Return the name of a county in the given state with the highest percent of under 18 year olds."""

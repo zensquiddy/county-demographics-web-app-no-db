@@ -4,9 +4,7 @@
 
         <form action="/showFact">
           <select name="state">
-            <option value="CA">California</option>
-            <option value="NY">New York</option>
-            <option value="HI">Hawaii</option>
+            {{ options }}
           </select>
           <br><br>
           <input type="submit" value="Get a fun fact!">
