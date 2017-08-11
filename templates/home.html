@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <form action="/showFact">
+          <select name="state">
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+            <option value="HI">Hawaii</option>
+          </select>
+          <br><br>
+          <input type="submit" value="Get a fun fact!">
+        </form>
+        <div id="funFact">
+            <p>{{ funFact }}</p>
+        </div>
+
+    </body>
+</html>
