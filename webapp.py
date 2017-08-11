@@ -10,7 +10,7 @@ app = Flask(__name__)
 def home():
     states = get_state_options()
     print(states)
-    return render_template('home.html', options=states)
+    return render_template('home.html', state_options=states)
 
 @app.route('/showFact')
 def search_by_county():
@@ -18,7 +18,7 @@ def search_by_county():
     state = request.args.get('state')
     county = county_most_under_18(state)
     fact = "In " + state + ", the county with the highest percentage of under 18 year olds is " + county + "."
-    return render_template('home.html', options=states, funFact=fact)
+    return render_template('home.html', state_options=states, funFact=fact)
     
 def get_state_options():
     """Return the html code for the drop down menu.  Each option is a state abbreviation from the demographic data."""
