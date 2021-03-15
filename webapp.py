@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     states = get_state_options()
-    print(states)
+    #print(states)
     return render_template('home.html', state_options=states)
 
 @app.route('/showFact')
@@ -56,4 +56,4 @@ def is_localhost():
 
 
 if __name__ == '__main__':
-    app.run(debug=True) # change to False when running in production
+    app.run(debug=False) # change to False when running in production
