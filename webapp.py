@@ -1,5 +1,5 @@
-from flask import Flask, request, Markup
-from flask import render_template, flash, Markup
+from flask import Flask, request, render_template, flash
+from markupsafe import Markup
 
 import os
 import json
