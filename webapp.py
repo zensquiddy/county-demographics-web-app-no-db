@@ -13,7 +13,7 @@ def home():
     return render_template('home.html', state_options=states)
 
 @app.route('/showFact')
-def search_by_county():
+def render_fact():
     states = get_state_options()
     state = request.args.get('state')
     county = county_most_under_18(state)
